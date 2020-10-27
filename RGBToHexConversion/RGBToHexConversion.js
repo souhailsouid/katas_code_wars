@@ -1,25 +1,18 @@
-function checkValidValues(number) {
+function isValidColor(number) {
     if (number < 0 || number > 255) {
         return 'invalid number'
-    }   return number 
+    }
+        return number 
 }
-function arrayOfRGB(arr) {
-    return arr.map(number => checkValidValues(number))
-}
-function indexOfInvalidNumber(arr) {
-    return arrayOfRGB(arr).indexOf("invalid number") 
-}
-function isolatedValidNumber(arr) {
-    return arr.filter((number) => checkValidValues(number) !== "invalid number")
-}
-function indexOfClosestvalidNumber(arr) {
-    return arr.findIndex((number) =>checkValidValues(number) !== "invalid number" ) 
-}
-function replaceInvalidNumber(arr) {
-    arr[indexOfInvalidNumber(arr)] = arr[indexOfClosestvalidNumber(arr)]
-    return arr
+function checkAndCorrectColor(number) {
+    if (number < 0)  return 0
+    if (number > 255)  return 255
+    return number
 }
 
+function arrayOfRGB(arr) {
+    return arr.map(number => isValidColor(number))
+}
 
 function rgbToHex (rgb) { 
     var hex = rgb.toString(16);
@@ -35,17 +28,25 @@ function fullColorHex(red, green, blue) {
     const combinedColors = colors(red) + colors(green) + colors(blue)
     return combinedColors
 };
+
 function rgb(r, g, b) {
+    const arrOfRGB = [r, g, b]
+    if (arrayOfRGB(arrOfRGB).includes('invalid number')) {
+        const colors = {
+            red: checkAndCorrectColor(r),
+            green: checkAndCorrectColor(g),
+            blue: checkAndCorrectColor(b)
+        }
+        const {red, green, blue} = colors
+        return fullColorHex(red, green, blue)
+     }
     return fullColorHex(r,g,b)
 }
 
 
 exports.rgb = rgb 
-exports.checkValidValues = checkValidValues
-exports.indexOfInvalidNumber = indexOfInvalidNumber
-exports.isolatedValidNumber = isolatedValidNumber
-exports.indexOfClosestvalidNumber = indexOfClosestvalidNumber
-exports.replaceInvalidNumber = replaceInvalidNumber
+exports.isValidColor = isValidColor
+exports.checkAndCorrectColor = checkAndCorrectColor
 exports.rgbToHex = rgbToHex 
 exports.colors = colors
 exports.fullColorHex = fullColorHex
