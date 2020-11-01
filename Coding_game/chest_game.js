@@ -54,8 +54,7 @@ function playersListIntoString(playersAvailable) {
 function count(n) { 
     if (n === 20000) {
         playersAvailable = n / 10
-        possibleTeamsWith2000Players = optimisation(playersListIntoString(playersAvailable)) 
-        
+        possibleTeamsWith2000Players = optimisation(playersListIntoString(playersAvailable))  
         return possibleTeamsWith2000Players = possibleTeamsWith2000Players.length  * 100.0450225112556278
             // 1 9999 0000
     }

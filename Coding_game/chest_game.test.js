@@ -20,7 +20,7 @@ describe('s\attendre à une liste de joueurs disponibles selon n', () => {
 })
 
 describe("Connaitre le nombre d'\equipes possible", () => {
-
+    
     it("s'\attendre au nombre d'\équipes possibles", () => {
         expect(chestFunc.count(4)).toStrictEqual(6)
         expect(chestFunc.count(1000)).toStrictEqual(499500)
